@@ -3,10 +3,24 @@ import Image from "next/image";
 import LogoSvg from "@/public/assets/svg/logo.svg";
 import Button2 from "../ui/Button2";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -23,8 +37,8 @@ export default function Navbar() {
     <div className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50">
       <nav className="w-full px-4 md:px-6 py-4 backdrop-blur-md bg-gray-900/45 border rounded-full border-white/10">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="w-[140px] md:w-[180px] flex items-center">
+          {/* Logo et YSR */}
+          <div className="w-[140px] md:w-[180px] flex items-center gap-3">
             <button
               onClick={() => scrollToSection("header")}
               className="text-white flex items-center"
@@ -38,6 +52,12 @@ export default function Navbar() {
                 style={{ display: "block" }}
               />
             </button>
+            <div 
+              className={`transition-all duration-300
+                ${isScrolled ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"}`}
+            >
+              <span className="text-white/30 text-sm font-medium tracking-wider font-['Noto Sans Arabic']">يسر</span>
+            </div>
           </div>
 
           {/* Menu burger pour mobile */}
@@ -59,12 +79,6 @@ export default function Navbar() {
                   Services
                 </button>
                 <button
-                  onClick={() => scrollToSection("projects")}
-                  className="text-gray-100 hover:text-white transition-colors py-2 text-center"
-                >
-                  Projets
-                </button>
-                <button
                   onClick={() => scrollToSection("processus")}
                   className="text-gray-100 hover:text-white transition-colors py-2 text-center"
                 >
@@ -77,7 +91,7 @@ export default function Navbar() {
                   F.A.Q
                 </button>
                 <div
-                  onClick={() => scrollToSection("contact")}
+                  onClick={() => window.location.href = "mailto:yasiragency@proton.me"}
                   className="flex justify-center w-full"
                 >
                   <Button2
@@ -98,12 +112,6 @@ export default function Navbar() {
               Services
             </button>
             <button
-              onClick={() => scrollToSection("projects")}
-              className="text-gray-100 hover:text-white transition-colors cursor-pointer"
-            >
-              Projets
-            </button>
-            <button
               onClick={() => scrollToSection("processus")}
               className="text-gray-100 hover:text-white transition-colors cursor-pointer"
             >
@@ -119,7 +127,7 @@ export default function Navbar() {
 
           {/* Bouton Contact (desktop) */}
           <div
-            onClick={() => scrollToSection("contact")}
+            onClick={() => window.location.href = "mailto:yasiragency@proton.me"}
             className="hidden md:flex justify-end"
           >
             <Button2 text="Contactez-nous" className="" />

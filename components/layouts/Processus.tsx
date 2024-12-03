@@ -26,6 +26,9 @@ export default function Processus() {
         "Échange pour comprendre vos objectifs et définir vos besoins",
       icon: "🤝",
       sousTitre: "Premier contact",
+      color: "from-blue-500/10 to-transparent",
+      progressColor: "bg-blue-400/60",
+      textColor: "text-blue-400",
     },
     {
       numero: "02",
@@ -34,6 +37,9 @@ export default function Processus() {
         "Présentation détaillée de la solution, du budget et du planning prévisionnel",
       icon: "📝",
       sousTitre: "Plan d'action",
+      color: "from-emerald-500/10 to-transparent",
+      progressColor: "bg-emerald-400/60",
+      textColor: "text-emerald-400",
     },
     {
       numero: "03",
@@ -42,6 +48,9 @@ export default function Processus() {
         "Développement itératif avec points d'étape réguliers et validations",
       icon: "⚙️",
       sousTitre: "Développement",
+      color: "from-amber-500/10 to-transparent",
+      progressColor: "bg-amber-400/60",
+      textColor: "text-amber-400",
     },
     {
       numero: "04",
@@ -50,6 +59,9 @@ export default function Processus() {
         "Mise en production et déploiement de votre projet après validation finale",
       icon: "🚀",
       sousTitre: "Final",
+      color: "from-purple-500/10 to-transparent",
+      progressColor: "bg-purple-400/60",
+      textColor: "text-purple-400",
     },
   ];
 
@@ -61,12 +73,6 @@ export default function Processus() {
             isInView ? "animate-fade-in-up" : ""
           }`}
         >
-          <div className="flex justify-center mb-4 md:mb-6">
-            <span className="px-4 py-1 bg-white/10 rounded-full text-white/50 text-xs md:text-sm border border-white/20">
-              Notre méthode
-            </span>
-          </div>
-
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 text-stone-100 font-instrument">
             Notre Processus de
             <span className="text-purple-400/90"> Réalisation</span>
@@ -86,21 +92,21 @@ export default function Processus() {
             }`}
           >
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold">10+</div>
+              <div className="text-2xl md:text-3xl font-bold">2-4</div>
               <div className="text-xs md:text-sm text-stone-400">
-                Projets Réalisés
+                Semaines par Projet
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold">97%</div>
+              <div className="text-2xl md:text-3xl font-bold">100%</div>
               <div className="text-xs md:text-sm text-stone-400">
-                Clients Satisfaits
+                Implication
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold">3-7</div>
+              <div className="text-2xl md:text-3xl font-bold text-purple-400">Nouveau</div>
               <div className="text-xs md:text-sm text-stone-400">
-                Semaines en Moyenne
+                Studio Digital
               </div>
             </div>
           </div>
@@ -120,26 +126,26 @@ export default function Processus() {
               }}
             >
               <div
-                className="absolute z-[-1] inset-0 bg-gradient-to-b from-purple-500/10 to-transparent rounded-xl 
-                opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                className={`absolute z-[-1] inset-0 bg-gradient-to-b ${etape.color} rounded-xl 
+                opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl`}
               />
               <div
-                className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 md:p-8
-                transform transition-all duration-300 hover:scale-[1.02]"
+                className={`relative bg-white/5 backdrop-blur-sm border border-white/10 hover:border-${etape.color.split('-')[1]}/30 rounded-xl p-6 md:p-8
+                transform transition-all duration-300 hover:scale-[1.02]`}
               >
                 <div className="text-3xl md:text-4xl mb-4">{etape.icon}</div>
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="text-purple-400/90 text-2xl md:text-3xl font-bold">
+                  <div className={`${etape.textColor} text-2xl md:text-3xl font-bold`}>
                     {etape.numero}
                   </div>
                   <div className="h-1 w-8 md:w-12 bg-white/20 rounded-full overflow-hidden">
-                    <div className="h-full bg-white/60 w-0 group-hover:w-full transition-all duration-700" />
+                    <div className={`h-full ${etape.progressColor} w-0 group-hover:w-full transition-all duration-700`} />
                   </div>
                 </div>
                 <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-stone-100">
                   {etape.titre}
                 </h3>
-                <div className="text-xs md:text-sm text-purple-400/70 mb-2">
+                <div className={`text-xs md:text-sm ${etape.textColor} mb-2`}>
                   {etape.sousTitre}
                 </div>
                 <p className="text-sm md:text-base text-stone-400">
@@ -148,27 +154,6 @@ export default function Processus() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bouton CTA */}
-        <div
-          className={`mt-12 md:mt-20 text-center opacity-0 ${
-            isInView ? "animate-fade-in-up" : ""
-          }`}
-          style={{
-            animationDelay: "0.8s",
-            animationFillMode: "forwards",
-          }}
-        >
-          <StandaloneShineButton
-            onClick={() => scrollToSection("contact")}
-            icon={
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-            }
-            className="text-sm md:text-base px-4 md:px-6 py-2 md:py-3"
-          >
-            Démarrer votre projet
-          </StandaloneShineButton>
         </div>
       </div>
     </section>

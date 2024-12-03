@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Inter } from "next/font/google"; // Import des polices
+import { Instrument_Sans, Inter, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
-// Configuration de Inter
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
-// Configuration de Instrument Sans
 const instrumentSans = Instrument_Sans({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-instrument_sans",
+});
+
+const notoSansArabic = Noto_Sans_Arabic({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["arabic"],
+  variable: "--font-noto-sans-arabic",
 });
 
 export const metadata: Metadata = {
@@ -32,10 +36,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className="dark">
+    <html lang="fr" className="dark" suppressHydrationWarning>
+      <head />
       <body
-        suppressHydrationWarning
-        className={`${inter.variable} ${instrumentSans.variable} font-sans overflow-x-hidden`}
+        className={`${inter.variable} ${instrumentSans.variable} ${notoSansArabic.variable} font-sans overflow-x-hidden`}
       >
         {children}
       </body>

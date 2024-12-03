@@ -14,16 +14,6 @@ export default function Contact() {
       className="container mx-auto px-4 py-16 md:py-32 relative overflow-hidden"
     >
       <div className="max-w-4xl mx-auto text-center relative">
-        <div
-          className={`inline-block px-4 py-1 bg-white/5 rounded-full border border-purple-500/20 mb-6
-            backdrop-blur-sm opacity-0 ${isInView ? "animate-fade-in-up" : ""}`}
-          style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
-        >
-          <span className="text-purple-200/80 text-sm">
-            Prêt à vous lancer?
-          </span>
-        </div>
-
         <h2
           className={`text-3xl md:text-5xl font-semibold mb-4 md:mb-6 text-stone-100 font-instrument
             opacity-0 ${isInView ? "animate-fade-in-up" : ""}`}
@@ -82,13 +72,13 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="https://calendly.com/votre-lien"
+                  href="https://calendly.com/yasiragency-proton/consultation-pour-la-creation-de-votre-projet?month=2024-12&date=2024-12-03"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mx-auto sm:w-auto"
                 >
                   <button
-                    className=" px-4 py-2.5 border border-white/10 rounded-lg text-stone-200/70 
+                    className="px-4 py-2.5 border border-white/10 rounded-lg text-stone-200/70 
                     hover:bg-white/10 hover:border-white/20 transition-all duration-300 
                     flex items-center justify-center gap-2"
                   >

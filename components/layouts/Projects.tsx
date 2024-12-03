@@ -1,7 +1,6 @@
-import Image from "next/image";
-import { useResponsiveInView } from "@/hooks/useResponsiveInView";
 import { StandaloneShineButton } from "../ui/cta";
 import { ArrowRight } from "lucide-react";
+import { useResponsiveInView } from "@/hooks/useResponsiveInView";
 
 export default function Projects() {
   const [sectionRef, isInView] = useResponsiveInView<HTMLElement>({
