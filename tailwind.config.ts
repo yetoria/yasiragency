@@ -80,6 +80,7 @@ const config = {
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
         "arc-line": "arcLine 3s linear infinite",
         "shine": "shine 2s linear infinite",
+        "meteor-effect": "meteor 5s linear infinite",
         line: "line 3s linear infinite",
         "shiny-text": "shiny-text 8s infinite",
         ripple: "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
@@ -127,6 +128,14 @@ const config = {
         "shimmer-slide": {
           to: {
             transform: "translate(calc(100cqw - 100%), 0)",
+          },
+        },
+        meteor: {
+          "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+          "70%": { opacity: "1" },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: "0",
           },
         },
         shine: {

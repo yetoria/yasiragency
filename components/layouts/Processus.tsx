@@ -1,18 +1,10 @@
-import { StandaloneShineButton } from "../ui/cta";
-import { ArrowRight } from "lucide-react";
+"use client";
+
 import { useResponsiveInView } from "@/hooks/useResponsiveInView";
+import { Meteors } from "../ui/meteors";
+import { cn } from "@/lib/utils";
 
 export default function Processus() {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
   const [sectionRef, isInView] = useResponsiveInView<HTMLElement>({
     threshold: 0.1,
     once: true,
@@ -26,9 +18,10 @@ export default function Processus() {
         "Échange pour comprendre vos objectifs et définir vos besoins",
       icon: "🤝",
       sousTitre: "Premier contact",
-      color: "from-blue-500/10 to-transparent",
-      progressColor: "bg-blue-400/60",
+      color: "from-blue-500 to-blue-700",
       textColor: "text-blue-400",
+      meteorColor: "#60a5fa",
+      progressColor: "bg-blue-500",
     },
     {
       numero: "02",
@@ -37,9 +30,10 @@ export default function Processus() {
         "Présentation détaillée de la solution, du budget et du planning prévisionnel",
       icon: "📝",
       sousTitre: "Plan d'action",
-      color: "from-emerald-500/10 to-transparent",
-      progressColor: "bg-emerald-400/60",
+      color: "from-emerald-500 to-emerald-700",
       textColor: "text-emerald-400",
+      meteorColor: "#34d399",
+      progressColor: "bg-emerald-500",
     },
     {
       numero: "03",
@@ -48,9 +42,10 @@ export default function Processus() {
         "Développement itératif avec points d'étape réguliers et validations",
       icon: "⚙️",
       sousTitre: "Développement",
-      color: "from-amber-500/10 to-transparent",
-      progressColor: "bg-amber-400/60",
+      color: "from-amber-500 to-amber-700",
       textColor: "text-amber-400",
+      meteorColor: "#fbbf24",
+      progressColor: "bg-amber-500",
     },
     {
       numero: "04",
@@ -59,9 +54,10 @@ export default function Processus() {
         "Mise en production et déploiement de votre projet après validation finale",
       icon: "🚀",
       sousTitre: "Final",
-      color: "from-purple-500/10 to-transparent",
-      progressColor: "bg-purple-400/60",
+      color: "from-purple-500 to-purple-700",
       textColor: "text-purple-400",
+      meteorColor: "#a855f7",
+      progressColor: "bg-purple-500",
     },
   ];
 
@@ -83,7 +79,6 @@ export default function Processus() {
             vision en réalité
           </p>
 
-          {/* Stats responsives */}
           <div
             className={`flex flex-col md:flex-row justify-center gap-6 md:gap-12 mt-8 transition-all duration-700 ${
               isInView
@@ -112,7 +107,6 @@ export default function Processus() {
           </div>
         </div>
 
-        {/* Grille des étapes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {etapes.map((etape, index) => (
             <div
@@ -125,32 +119,37 @@ export default function Processus() {
                 animationFillMode: "forwards",
               }}
             >
-              <div
-                className={`absolute z-[-1] inset-0 bg-gradient-to-b ${etape.color} rounded-xl 
-                opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl`}
-              />
-              <div
-                className={`relative bg-white/5 backdrop-blur-sm border border-white/10 hover:border-${etape.color.split('-')[1]}/30 rounded-xl p-6 md:p-8
-                transform transition-all duration-300 hover:scale-[1.02]`}
-              >
-                <div className="text-3xl md:text-4xl mb-4">{etape.icon}</div>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className={`${etape.textColor} text-2xl md:text-3xl font-bold`}>
+              <div className={`absolute inset-0 h-full w-full bg-gradient-to-r ${etape.color} transform scale-[0.80] rounded-3xl blur-xl opacity-30 group-hover:opacity-40 transition-opacity duration-500`} />
+              <div className="relative shadow-xl bg-gray-900/90 border border-gray-800 px-6 py-8 h-full overflow-hidden rounded-2xl flex flex-col group">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="text-3xl">{etape.icon}</div>
+                  <div className={cn("text-2xl font-bold", etape.textColor)}>
                     {etape.numero}
                   </div>
-                  <div className="h-1 w-8 md:w-12 bg-white/20 rounded-full overflow-hidden">
-                    <div className={`h-full ${etape.progressColor} w-0 group-hover:w-full transition-all duration-700`} />
-                  </div>
                 </div>
-                <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-stone-100">
+
+                <h3 className="text-xl font-semibold mb-2 text-stone-100">
                   {etape.titre}
                 </h3>
-                <div className={`text-xs md:text-sm ${etape.textColor} mb-2`}>
+                <div className={cn("text-sm mb-3", etape.textColor)}>
                   {etape.sousTitre}
                 </div>
-                <p className="text-sm md:text-base text-stone-400">
+                <p className="text-sm text-stone-400 mb-4">
                   {etape.description}
                 </p>
+
+                <div className="mt-auto mb-4">
+                  <div className="h-1 w-full bg-gray-800 rounded-full overflow-hidden">
+                    <div 
+                      className={cn(
+                        "h-full w-0 group-hover:w-full transition-all duration-1000 ease-out",
+                        etape.progressColor
+                      )}
+                    />
+                  </div>
+                </div>
+
+                <Meteors number={10} color={etape.meteorColor} />
               </div>
             </div>
           ))}
