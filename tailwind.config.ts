@@ -79,6 +79,7 @@ const config = {
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
         "arc-line": "arcLine 3s linear infinite",
+        "shine": "shine 2s linear infinite",
         line: "line 3s linear infinite",
         "shiny-text": "shiny-text 8s infinite",
         ripple: "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
@@ -127,6 +128,10 @@ const config = {
           to: {
             transform: "translate(calc(100cqw - 100%), 0)",
           },
+        },
+        shine: {
+          "0%": { backgroundPosition: "-200%" },
+          "100%": { backgroundPosition: "200%" },
         },
         "spin-around": {
           "0%": {

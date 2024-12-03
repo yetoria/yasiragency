@@ -92,21 +92,21 @@ export default function Processus() {
             }`}
           >
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold">2-4</div>
+              <div className="text-2xl md:text-3xl font-bold text-purple-400">4-6</div>
               <div className="text-xs md:text-sm text-stone-400">
-                Semaines par Projet
+                Semaines de Développement
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold">100%</div>
+              <div className="text-2xl md:text-3xl font-bold text-purple-400">24/7</div>
               <div className="text-xs md:text-sm text-stone-400">
-                Implication
+                Support & Maintenance
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-purple-400">Nouveau</div>
+              <div className="text-2xl md:text-3xl font-bold text-purple-400">100%</div>
               <div className="text-xs md:text-sm text-stone-400">
-                Studio Digital
+                Satisfaction Client
               </div>
             </div>
           </div>

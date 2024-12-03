@@ -54,9 +54,14 @@ export default function Navbar() {
             </button>
             <div 
               className={`transition-all duration-300
-                ${isScrolled ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"}`}
+                ${isScrolled ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"}
+                relative overflow-hidden group`}
             >
-              <span className="text-white/30 text-sm font-medium tracking-wider font-['Noto Sans Arabic']">يسر</span>
+              <span className="text-base md:text-lg font-medium tracking-wider font-['Noto Sans Arabic'] relative z-10
+                bg-gradient-to-r from-purple-400/80 via-white to-purple-400/80 bg-[length:200%_100%] bg-clip-text text-transparent
+                animate-shine hover:text-purple-300 transition-colors">يسر</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent 
+                translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
             </div>
           </div>
 

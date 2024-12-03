@@ -39,7 +39,8 @@ export default function RootLayout({
     <html lang="fr" className="dark" suppressHydrationWarning>
       <head />
       <body
-        className={`${inter.variable} ${instrumentSans.variable} ${notoSansArabic.variable} font-sans overflow-x-hidden`}
+        suppressHydrationWarning
+        className={`${inter.variable} ${instrumentSans.variable} ${notoSansArabic.variable} font-sans overflow-x-hidden antialiased`}
       >
         {children}
       </body>

@@ -9,7 +9,7 @@ import Faq from "@/components/layouts/Faq";
 import Contact from "@/components/layouts/Contact";
 import Footer from "@/components/layouts/Footer";
 import Ripple from "@/components/ui/ripple";
-import { StandaloneShineButton } from "@/components/ui/cta";
+import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import BackToTop from "@/components/ui/BackToTop";
 
 export default function Home() {
@@ -109,12 +109,12 @@ export default function Home() {
             </div>
 
             <div className="mt-8 opacity-0 animate-[fadeIn_0.6s_ease-out_1.8s_forwards]">
-              <StandaloneShineButton
+              <MovingBorderButton
                 onClick={() => scrollToSection("contact")}
-                className="text-sm md:text-base px-4 md:px-6 py-2 md:py-3"
+                className="text-sm md:text-base font-medium"
               >
                 Obtenez votre devis gratuitement
-              </StandaloneShineButton>
+              </MovingBorderButton>
             </div>
           </div>
         </div>
