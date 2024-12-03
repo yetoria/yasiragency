@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import LogoSvg from "@/public/assets/svg/logo.svg";
-import Button2 from "../ui/Button2";
+import { Button as MovingBorderButton } from "../ui/moving-border";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -99,10 +99,11 @@ export default function Navbar() {
                   onClick={() => window.location.href = "mailto:yasiragency@proton.me"}
                   className="flex justify-center w-full"
                 >
-                  <Button2
-                    text="Contactez-nous"
+                  <MovingBorderButton
                     className="w-full max-w-[200px] flex justify-center items-center"
-                  />
+                  >
+                    Contactez-nous
+                  </MovingBorderButton>
                 </div>
               </div>
             </div>
@@ -135,7 +136,9 @@ export default function Navbar() {
             onClick={() => window.location.href = "mailto:yasiragency@proton.me"}
             className="hidden md:flex justify-end"
           >
-            <Button2 text="Contactez-nous" className="" />
+            <MovingBorderButton className="text-sm">
+              Contactez-nous
+            </MovingBorderButton>
           </div>
         </div>
       </nav>

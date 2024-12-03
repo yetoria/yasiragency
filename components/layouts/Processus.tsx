@@ -3,12 +3,23 @@
 import { useResponsiveInView } from "@/hooks/useResponsiveInView";
 import { Meteors } from "../ui/meteors";
 import { cn } from "@/lib/utils";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Processus() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [sectionRef, isInView] = useResponsiveInView<HTMLElement>({
     threshold: 0.1,
     once: true,
   });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setPosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   const etapes = [
     {
@@ -22,6 +33,7 @@ export default function Processus() {
       textColor: "text-blue-400",
       meteorColor: "#60a5fa",
       progressColor: "bg-blue-500",
+      spotlightColor: "bg-blue-400/10",
     },
     {
       numero: "02",
@@ -34,6 +46,7 @@ export default function Processus() {
       textColor: "text-emerald-400",
       meteorColor: "#34d399",
       progressColor: "bg-emerald-500",
+      spotlightColor: "bg-emerald-400/10",
     },
     {
       numero: "03",
@@ -46,6 +59,7 @@ export default function Processus() {
       textColor: "text-amber-400",
       meteorColor: "#fbbf24",
       progressColor: "bg-amber-500",
+      spotlightColor: "bg-amber-400/10",
     },
     {
       numero: "04",
@@ -58,6 +72,7 @@ export default function Processus() {
       textColor: "text-purple-400",
       meteorColor: "#a855f7",
       progressColor: "bg-purple-500",
+      spotlightColor: "bg-purple-400/10",
     },
   ];
 
@@ -87,19 +102,25 @@ export default function Processus() {
             }`}
           >
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-purple-400">4-6</div>
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400/90 via-white to-purple-400/90 bg-[length:200%_100%] animate-shine bg-clip-text text-transparent">
+                4-6
+              </div>
               <div className="text-xs md:text-sm text-stone-400">
                 Semaines de Développement
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-purple-400">24/7</div>
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400/90 via-white to-purple-400/90 bg-[length:200%_100%] animate-shine bg-clip-text text-transparent">
+                24/7
+              </div>
               <div className="text-xs md:text-sm text-stone-400">
                 Support & Maintenance
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-purple-400">100%</div>
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400/90 via-white to-purple-400/90 bg-[length:200%_100%] animate-shine bg-clip-text text-transparent">
+                100%
+              </div>
               <div className="text-xs md:text-sm text-stone-400">
                 Satisfaction Client
               </div>
@@ -109,7 +130,7 @@ export default function Processus() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {etapes.map((etape, index) => (
-            <div
+            <motion.div
               key={etape.numero}
               className={`group relative opacity-0 ${
                 isInView ? "animate-fade-in-up" : ""
@@ -118,12 +139,33 @@ export default function Processus() {
                 animationDelay: `${index * 200}ms`,
                 animationFillMode: "forwards",
               }}
+              initial={{ y: 0 }}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
             >
               <div className={`absolute inset-0 h-full w-full bg-gradient-to-r ${etape.color} transform scale-[0.80] rounded-3xl blur-xl opacity-30 group-hover:opacity-40 transition-opacity duration-500`} />
-              <div className="relative shadow-xl bg-gray-900/90 border border-gray-800 px-6 py-8 h-full overflow-hidden rounded-2xl flex flex-col group">
+              <div 
+                className="relative shadow-xl bg-gray-900/90 border border-gray-800 px-6 py-8 h-full overflow-hidden rounded-2xl flex flex-col group"
+                onMouseMove={handleMouseMove}
+              >
+                {/* Spotlight effect */}
+                <div
+                  className={cn(
+                    "pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300",
+                    etape.spotlightColor
+                  )}
+                  style={{
+                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${etape.meteorColor}10, transparent 40%)`,
+                  }}
+                />
+                
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="text-3xl">{etape.icon}</div>
-                  <div className={cn("text-2xl font-bold", etape.textColor)}>
+                  <div className="text-3xl transform transition-transform group-hover:scale-110 duration-300">{etape.icon}</div>
+                  <div className={cn(
+                    "text-2xl font-bold transition-all duration-300",
+                    etape.textColor,
+                    "group-hover:animate-pulse"
+                  )}>
                     {etape.numero}
                   </div>
                 </div>
@@ -151,7 +193,7 @@ export default function Processus() {
 
                 <Meteors number={10} color={etape.meteorColor} />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

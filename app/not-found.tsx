@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Particles from "@/components/ui/particles";
-import AnimatedShinyText from "@/components/ui/animated-shiny-text";
 import { StandaloneShineButton } from "@/components/ui/cta";
 
 export default function NotFound() {
@@ -22,7 +21,9 @@ export default function NotFound() {
       <div className="container mx-auto px-4 h-svh flex flex-col items-center justify-center relative z-10">
         <div className="text-center space-y-6">
           <div className="inline-block px-4 py-1 bg-white/5 rounded-full border border-white/10">
-            <AnimatedShinyText>Erreur 404</AnimatedShinyText>
+            <span className="bg-gradient-to-r from-purple-400/90 via-white to-purple-400/90 bg-[length:200%_100%] animate-shine bg-clip-text text-transparent">
+              Erreur 404
+            </span>
           </div>
 
           <h1 className="text-8xl font-bold text-stone-100 font-instrument drop-shadow-[0_0_0.2rem_#ffffff70]">

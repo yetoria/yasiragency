@@ -81,6 +81,7 @@ const config = {
         "arc-line": "arcLine 3s linear infinite",
         "shine": "shine 2s linear infinite",
         "meteor-effect": "meteor 5s linear infinite",
+        "pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         line: "line 3s linear infinite",
         "shiny-text": "shiny-text 8s infinite",
         ripple: "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
@@ -128,6 +129,16 @@ const config = {
         "shimmer-slide": {
           to: {
             transform: "translate(calc(100cqw - 100%), 0)",
+          },
+        },
+        pulse: {
+          "0%, 100%": {
+            opacity: "1",
+            transform: "scale(1)",
+          },
+          "50%": {
+            opacity: "0.8",
+            transform: "scale(1.05)",
           },
         },
         meteor: {

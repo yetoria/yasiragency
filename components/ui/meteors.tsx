@@ -1,19 +1,40 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export const Meteors = ({ 
-  number,
-  color = "#64748b"
-}: { 
+interface MeteorProps {
   number?: number;
   color?: string;
-}) => {
-  const meteors = new Array(number || 20).fill(true);
+}
+
+interface MeteorStyle {
+  left: string;
+  animationDelay: string;
+  animationDuration: string;
+}
+
+export const Meteors = ({ 
+  number = 20,
+  color = "#64748b"
+}: MeteorProps) => {
+  const [meteorStyles, setMeteorStyles] = useState<MeteorStyle[]>([]);
+
+  useEffect(() => {
+    const styles = Array.from({ length: number }, () => ({
+      left: `${Math.floor(Math.random() * (400 - -400) + -400)}px`,
+      animationDelay: `${Math.random() * (0.8 - 0.2) + 0.2}s`,
+      animationDuration: `${Math.floor(Math.random() * (10 - 2) + 2)}s`,
+    }));
+    setMeteorStyles(styles);
+  }, [number]);
+
+  if (meteorStyles.length === 0) {
+    return null;
+  }
 
   return (
     <>
-      {meteors.map((_, idx) => (
+      {meteorStyles.map((style, idx) => (
         <span
           key={idx}
           className={cn(
@@ -22,9 +43,9 @@ export const Meteors = ({
           )}
           style={{
             top: 0,
-            left: Math.floor(Math.random() * (400 - -400) + -400) + "px",
-            animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + "s",
-            animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + "s",
+            left: style.left,
+            animationDelay: style.animationDelay,
+            animationDuration: style.animationDuration,
             backgroundColor: color,
             "--meteor-color": color,
           } as React.CSSProperties & { "--meteor-color": string }}
